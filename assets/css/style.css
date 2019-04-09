@@ -21,7 +21,23 @@ img:hover {
     width: 50%;
     height: 70%;
 }
-
+.pagination-links{
+    margin: 30px 0;
+}
+.pagination-links strong{
+    padding: 8px 13px;
+    margin: 5px;
+    background: #593196;
+    color: #ffffff;
+    border: 1px #ccc solid;
+}
+a.pagination-link{
+    padding: 8px 13px;
+    margin: 5px;
+    background: #593196;
+    color: #ffffff;
+    border: 1px #ccc solid;
+}
 .footer{
     position: fixed;
     left: 0;

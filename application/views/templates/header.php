@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title> TestApp </title>
+    <title> CIBlog</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
 
     <!-- Optional theme -->
@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="<?php echo base_url();?>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo base_url();?>">ABOUT <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url();?>about">ABOUT</a>
@@ -34,10 +34,15 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
+            <?php if($this->session->userdata('logged_in')): ?>
             <li class="nav-item"><a class="nav-link" href="<?php echo base_url();?>posts/create">CREATE POST</a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo base_url();?>categories/create">CREATE CATEGORY</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo base_url();?>users/logout">SIGN OUT</a></li>
+            <?php endif; ?>
+            <?php if(!$this->session->userdata('logged_in')): ?>
             <li class="nav-item"><a class="nav-link" href="<?php echo base_url();?>users/register">SIGN UP</a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo base_url();?>users/checkLogin">SIGN IN</a></li>
+            <?php endif; ?>
         </ul>
 
     </div>
@@ -64,7 +69,15 @@
     <?php if( $this->session->flashdata('category_created')): ?>
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('category_created').'</p>' ;?>
     <?php endif; ?>
-
+    <!-- Flash Messages -->
     <?php if( $this->session->flashdata('login_failed')): ?>
     <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>' ;?>
+    <?php endif; ?>
+    <!-- Flash Messages -->
+    <?php if( $this->session->flashdata('user_logged_in')): ?>
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_logged_in').'</p>' ;?>
+    <?php endif; ?>
+    <!-- Flash Messages -->
+    <?php if( $this->session->flashdata('user_logged_out')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_logged_out').'</p>' ;?>
     <?php endif; ?>

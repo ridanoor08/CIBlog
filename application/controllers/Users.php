@@ -80,12 +80,13 @@ class Users extends CI_Controller
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
 
-        $data = array(
-            'email'  => $email,
-            'password'     => $password
-        );
-        $this->session->set_userdata($data);
         if($this->User_model->login($email, $password)){
+            $data = array(
+                'email'  => $email,
+                'logged_in'     => true
+            );
+            $this->session->set_userdata($data);
+            $this->session->set_flashdata('user_logged_in', 'You are now logged in.');
             redirect('users/index');
         }
         else{
@@ -96,8 +97,11 @@ class Users extends CI_Controller
     }
 
     public function logout(){
-        $this->session->unset_userdata('$val');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('logged_in');
+
         $this->session->sess_destroy();
+
         redirect('users/checkLogin');
     }
 }

@@ -10,8 +10,11 @@ class Post_model extends CI_Model
 {
 
 
-    public function get_posts($slug = FALSE){
-        if($slug == FALSE){
+    public function get_posts($slug = FALSE, $limit = FALSE, $offset = FALSE ){
+        if($limit){
+            $this->db->limit($limit, $offset);
+        }
+        if($slug === FALSE){
             $this->db->order_by('tbl_posts.fld_post_id', 'DESC');
             $this->db->join('tbl_categories', 'tbl_categories.fld_category_id = tbl_posts.fld_cat_id');
             $query = $this->db->get('tbl_posts');

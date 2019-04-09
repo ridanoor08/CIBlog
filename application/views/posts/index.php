@@ -1,7 +1,6 @@
 <div class="jumbotron">
     <h2 class="display-6"><?= $title; ?></h2>
     <hr class="my-4">
-
 <?php foreach ($posts as $post): ?>
     <h2><?php echo $post['fld_title']; ?></h2>
     <div class="row">
@@ -10,12 +9,15 @@
         </div>
 
         <div class="col-md-9">
-            <small class="text-dark">Posted On: <?php echo $post['fld_date']; ?> in <?php echo $post['fld_category_name']; ?>  </small> <br><br>
-            <?php echo word_limiter($post['fld_body'], 60); ?>
-
-            <p><a class="btn btn-outline-primary" href="<?php echo site_url('/posts/'.$post['fld_slug']); ?>">Read More</a></p>
+            <small class="text-dark">Posted On: <?php echo $post['fld_date']; ?> in <?php echo $post['fld_category_name']; ?>  </small><br>
+            <?php echo word_limiter($post['fld_body'], 40); ?>
+            <p><a class="btn btn-outline-primary" href="<?php echo site_url('/posts/'.$post['fld_slug']); ?>">Read More</a></p><br>
         </div>
     </div>
-    <hr>
+
 <?php endforeach; ?>
+    <div class="pagination-links">
+         <?php echo $this->pagination->create_links(); ?>
+
+    </div>
 </div>

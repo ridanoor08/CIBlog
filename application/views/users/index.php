@@ -16,9 +16,7 @@
                 Password:
             </td>
             <td>
-                <?php if($this->session->userdata('password')) {
-                    echo $this->session->userdata('password');
-                }?> <br>
+
             </td>
         </tr>
     </table>

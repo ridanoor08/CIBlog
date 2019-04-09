@@ -17,10 +17,19 @@ class Posts extends CI_Controller
         $this->load->model('Comment_model');
         $this->load->library('upload');
     }
-    public function index(){
+    public function index($offset = 0){
+        //Pagination Configuration
+        $config['base_url'] = base_url().'posts/index/';
+        $config['total_rows'] = $this->db->count_all('tbl_posts');
+        $config['per_page'] = 3;
+        $config['uri_segment'] = 3; //posts/index/id that's why it is three
+        // Produces: class="myclass"
+        $config['attributes'] = array('class' => 'pagination-link');
+
+        $this->pagination->initialize($config);
         $data['title'] = 'LATEST POSTS';
 
-        $data['posts'] = $this->Post_model->get_posts();
+        $data['posts'] = $this->Post_model->get_posts(FALSE, $config['per_page'], $offset);
 
         $this->load->view('templates/header');
         $this->load->view('posts/index',$data);
@@ -43,6 +52,10 @@ class Posts extends CI_Controller
     }
 
     public function create(){
+        //Check Login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/checkLogin');
+        }
         $data['title'] = 'CREATE POST';
 
         $data['categories'] = $this->Category_model->get_categories();
@@ -85,6 +98,10 @@ class Posts extends CI_Controller
         }
     }
     public function delete($id){
+        //Check Login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/checkLogin');
+        }
         $this->Post_model->delete_post($id);
         //Set Message
         $this->session->set_flashdata('post_deleted','Your post deleted successfully');
@@ -92,6 +109,10 @@ class Posts extends CI_Controller
     }
 
     public function edit($slug){
+        //Check Login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/checkLogin');
+        }
         $data['post'] = $this->Post_model->get_posts($slug);
         $data['categories'] = $this->Category_model->get_categories();
         if(empty($data['post'])){
@@ -105,6 +126,7 @@ class Posts extends CI_Controller
     }
 
     public function update(){
+
         $data['post'] = $this->Post_model->update_post();
         //Set Message
         $this->session->set_flashdata('post_updated','Your post updated successfully');
