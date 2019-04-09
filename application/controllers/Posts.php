@@ -18,7 +18,7 @@ class Posts extends CI_Controller
         $this->load->library('upload');
     }
     public function index(){
-        $data['title'] = 'Latest Posts';
+        $data['title'] = 'LATEST POSTS';
 
         $data['posts'] = $this->Post_model->get_posts();
 
@@ -43,7 +43,7 @@ class Posts extends CI_Controller
     }
 
     public function create(){
-        $data['title'] = 'Create Post';
+        $data['title'] = 'CREATE POST';
 
         $data['categories'] = $this->Category_model->get_categories();
 
@@ -97,7 +97,7 @@ class Posts extends CI_Controller
         if(empty($data['post'])){
             show_404();
         }
-        $data['title'] = 'Edit Post';
+        $data['title'] = 'EDIT POST';
 
         $this->load->view('templates/header');
         $this->load->view('posts/edit',$data);
