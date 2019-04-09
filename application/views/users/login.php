@@ -1,41 +1,18 @@
-<h2> <?= $title; ?> </h2>
-<div align="center">
-
-    <?php
-    $errorMsg = validation_errors();
-    if ($errorMsg){
-        echo '<div class="alert alert-error" style="color: red">'. $errorMsg. '</div>';
-    }
-    ?>
-    <?php echo form_open('users/checkLogin'); ?>
-<div>
-    <h2>TEST LOGIN</h2> <br>
-</div>
-
-<div>
-    <div class="form-group">
-        <table>
-            <tr>
-                <td>
-                    <label for="email" class="form-control-label">Email</label>
-                </td>
-                <td>
-                    <input type="text" placeholder="Enter Email" class="form-control is-valid" name="email"><br><br>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="password" class="form-control-label">Password</label>
-                </td>
-                <td>
-                    <input type="password" placeholder="Enter Password" class="form-control is-valid" name="password"><br><br>
-                </td>
-            </tr>
-        </table>
+<div class="jumbotron">
+    <h2 class="display-6"><?= $title; ?></h2>
+    <div class="col-md-8">
+        <?php echo form_open('users/checkLogin'); ?>
+            <div class="row">
+                <div class="col-md-2"><label for="email">Name</label></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="email" placeholder="Enter Email"><div style="color: red"><?= form_error('email') ?><br></div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><label for="password">Password</label></div>
+                <div class="col-md-6"><input type="password" class="form-control" name="password" placeholder="Enter Password"><div style="color: red"><?= form_error('password') ?><br></div></div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-outline-primary btn-block">SIGN IN</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <button type="submit" class="btn btn-default">Login</button>
-    </div>
-</div>
-</form>
 </div>

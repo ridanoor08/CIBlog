@@ -42,7 +42,7 @@
         <div style="color: red"><?= form_error('zipcode') ?></div>
     </div>
 
-    <input type="submit" class="btn btn-primary btn-block" value="Sign Up" >
+    <input type="submit" class="btn btn-outline-primary btn-block" value="SIGN UP" >
 </form>
 
 </div>
