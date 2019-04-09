@@ -1,4 +1,6 @@
-<h2> <?= $title; ?> </h2>
+<div class="jumbotron">
+    <h2 class="display-6"><?= $title; ?></h2>
+    <hr class="my-4">
 
 <?php foreach ($posts as $post): ?>
     <h2><?php echo $post['fld_title']; ?></h2>
@@ -8,10 +10,12 @@
         </div>
 
         <div class="col-md-9">
-            <small class="text-white">Posted On: <?php echo $post['fld_date']; ?> in <?php echo $post['fld_category_name']; ?>  </small> <br>
+            <small class="text-dark">Posted On: <?php echo $post['fld_date']; ?> in <?php echo $post['fld_category_name']; ?>  </small> <br><br>
             <?php echo word_limiter($post['fld_body'], 60); ?>
-            <br><br>
-            <p><a class="btn btn-outline-light" href="<?php echo site_url('/posts/'.$post['fld_slug']); ?>">Read More</a></p>
+
+            <p><a class="btn btn-outline-primary" href="<?php echo site_url('/posts/'.$post['fld_slug']); ?>">Read More</a></p>
         </div>
     </div>
+    <hr>
 <?php endforeach; ?>
+</div>
