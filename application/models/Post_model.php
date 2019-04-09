@@ -31,6 +31,7 @@ class Post_model extends CI_Model
             'fld_slug' => $slug,
             'fld_body' => trim($this->input->post('body')),
             'fld_cat_id' => $this->input->post('category_id'),
+            'fld_usr_id' => $this->session->userdata('user_id'),
             'fld_post_image' => $post_image
         );
 

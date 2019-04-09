@@ -32,13 +32,12 @@ class User_model extends CI_Model
     }
 
     public function login($email, $password){
-        $this->db->select('fld_email', 'fld_password');
-        $this->db->from('tbl_users');
+
         $this->db->where('fld_email', $email);
         $this->db->where('fld_password', $password);
-        $query = $this->db->get();
+        $query = $this->db->get('tbl_users');
         if($query->num_rows() == 1){
-            return true;
+            return $query->row(0)->fld_user_id;
         }
         else{
             return false;

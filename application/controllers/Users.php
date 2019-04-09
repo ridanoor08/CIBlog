@@ -79,10 +79,12 @@ class Users extends CI_Controller
     public function verifyUser(){
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
+        $user_id = $this->User_model->login($email, $password);
 
-        if($this->User_model->login($email, $password)){
+        if($user_id){
             $data = array(
                 'email'  => $email,
+                'user_id'  => $user_id,
                 'logged_in'     => true
             );
             $this->session->set_userdata($data);
