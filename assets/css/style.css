@@ -1,0 +1,29 @@
+body{
+    background: #F9F8FC;
+}
+.posts-date{
+    background: #FDF6E3;
+    padding: 4px;
+    margin: 3px 0;
+    display: block;
+}
+
+.post-thumb{
+    width: 20%;
+}
+
+.well{
+    width: 50%;
+    height: 70%;
+}
+
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #593196;
+    color: white;
+    text-align: center;
+    height: 150px;
+}
