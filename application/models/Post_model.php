@@ -25,7 +25,19 @@ class Post_model extends CI_Model
     }
 
     public function create_post($post_image){
-        $slug = url_title($this->input->post('title'));
+        $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($this->input->post('title'))));
+
+        $count = 0;
+        while(true)
+        {
+            $this->db->select('fld_slug');
+            $this->db->from('tbl_posts');
+            $this->db->like("fld_slug","$slug");
+            $query=$this->db->get();
+            if ($query->num_rows() == 0) break;
+            $slug = $slug . '-' . (++$count);  // Recreate new temp name
+        }
+
         $data = array(
             'fld_title' => $this->input->post('title'),
             'fld_slug' => $slug,
