@@ -65,7 +65,7 @@ class Post_model extends CI_Model
     }
 
     public function update_post(){
-        $slug = url_title($this->input->post('title'));
+        $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($this->input->post('title'))));
 
         $data = array(
             'fld_title' => $this->input->post('title'),

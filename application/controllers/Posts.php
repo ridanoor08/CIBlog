@@ -121,8 +121,9 @@ class Posts extends CI_Controller
             redirect('users/checkLogin');
         }
         $data['post'] = $this->Post_model->get_posts($slug);
+        $user_id = $data['post']['fld_user_id'];
         //Check User
-        if($this->session->userdata('user_id') !=  $this->Post_model->get_posts[$slug]['user_id']){
+        if($this->session->userdata('user_id') !=  $user_id){
             redirect('posts/');
         }
 
