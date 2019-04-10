@@ -34,7 +34,12 @@ class Category_model extends CI_Model
     }
 
     public function delete_category($id){
-
+        $file_image_name = $this->db->select('fld_post_id')->get_where('tbl_posts', array('fld_post_id'=>$id))->row()->fld_post_image;
+        $cwd = getcwd(); //gets the current working directory
+        $image_file_path = $cwd.'\\assets\\images\\posts\\';
+        chdir($image_file_path);
+        unlink($file_image_name);
+        chdir($cwd);
         $this->db->where('fld_category_id', $id);
         $this->db->delete('tbl_categories');
         return true;
