@@ -102,6 +102,13 @@ class Posts extends CI_Controller
         if(!$this->session->userdata('logged_in')){
             redirect('users/checkLogin');
         }
+
+        $file_image_name = $this->Post_model->find($id)->fld_post_image;
+        $cwd = getcwd(); //gets the current working directory
+        $image_file_path = $cwd.'\\assets\\images\\posts\\';
+        chdir($image_file_path);
+        unlink($file_image_name);
+        chdir($cwd);
         $this->Post_model->delete_post($id);
         //Set Message
         $this->session->set_flashdata('post_deleted','Your post deleted successfully');

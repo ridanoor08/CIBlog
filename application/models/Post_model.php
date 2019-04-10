@@ -26,8 +26,8 @@ class Post_model extends CI_Model
 
     public function create_post($post_image){
         $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($this->input->post('title'))));
-
         $count = 0;
+
         while(true)
         {
             $this->db->select('fld_slug');
@@ -49,6 +49,12 @@ class Post_model extends CI_Model
 
         $query = $this->db->insert('tbl_posts', $data);
         return $query;
+    }
+
+    public function find($id){
+
+        $query = $this->db->get_where('tbl_posts', array('fld_post_id' => $id));
+        return $query->row();
     }
 
     public function delete_post($id){

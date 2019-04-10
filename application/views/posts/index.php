@@ -5,7 +5,7 @@
     <h2><?php echo $post['fld_title']; ?></h2>
     <div class="row">
         <div class="col-md-3">
-            <img src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['fld_post_image'] ; ?>" class="post-thumb">
+           <img src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['fld_post_image'] ; ?>" class="post-thumb">
         </div>
 
         <div class="col-md-9">
