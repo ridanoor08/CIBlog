@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-9">
             <?php echo $post['fld_body'];?>
-            <?php if($this->session->userdata('user_id') == $post['fld_usr_id']): ?>
+            <?php if($this->session->userdata('user_id') == $post['fld_user_id']): ?>
             <?php echo form_open('posts/delete/'. $post['fld_post_id']); ?>
                 <a href="edit/<?php echo $post['fld_slug'];?>" class="btn btn-success btn-sm ">&nbsp;&nbsp;&nbsp;EDIT&nbsp;&nbsp;&nbsp;</a>
                 <input type="submit" class="btn btn-danger btn-sm" value="DELETE" >

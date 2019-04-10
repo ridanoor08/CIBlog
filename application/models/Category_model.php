@@ -12,7 +12,8 @@ class Category_model extends CI_Model
     public function create_category(){
 
         $data = array(
-            'fld_category_name' => $this->input->post('category_name')
+            'fld_category_name' => $this->input->post('category_name'),
+            'fld_user_id' => $this->session->userdata('user_id'),
         );
 
         $query = $this->db->insert('tbl_categories', $data);
@@ -31,6 +32,14 @@ class Category_model extends CI_Model
         return $query->row();
 
     }
+
+    public function delete_category($id){
+
+        $this->db->where('fld_category_id', $id);
+        $this->db->delete('tbl_categories');
+        return true;
+    }
+
 
 
 }

@@ -66,6 +66,10 @@
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('post_deleted').'</p>' ;?>
     <?php endif; ?>
     <!-- Flash Messages -->
+    <?php if( $this->session->flashdata('cat_deleted')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('cat_deleted').'</p>' ;?>
+    <?php endif; ?>
+    <!-- Flash Messages -->
     <?php if( $this->session->flashdata('category_created')): ?>
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('category_created').'</p>' ;?>
     <?php endif; ?>

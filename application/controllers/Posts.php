@@ -114,6 +114,12 @@ class Posts extends CI_Controller
             redirect('users/checkLogin');
         }
         $data['post'] = $this->Post_model->get_posts($slug);
+        //Check User
+        if($this->session->userdata('user_id') !=  $this->Post_model->get_posts[$slug]['user_id']){
+            redirect('posts/');
+        }
+
+
         $data['categories'] = $this->Category_model->get_categories();
         if(empty($data['post'])){
             show_404();

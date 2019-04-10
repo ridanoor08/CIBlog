@@ -22,7 +22,7 @@ class Comments extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'E-Mail', 'required|valid_email');
-        $this->form_validation->set_rules('comment', 'comment', 'required');
+        $this->form_validation->set_rules('comment', 'Comment', 'required');
 
         if($this->form_validation->run() === FALSE){
             $this->load->view('templates/header');

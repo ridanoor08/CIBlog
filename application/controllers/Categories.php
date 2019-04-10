@@ -60,4 +60,15 @@ class Categories extends CI_Controller
 
     }
 
+    public function delete($id){
+        //Check Login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/checkLogin');
+        }
+        $this->Category_model->delete_category($id);
+        //Set Message
+        $this->session->set_flashdata('cat_deleted','Your category deleted successfully');
+        redirect('categories/');
+    }
+
 }
